@@ -1,9 +1,107 @@
-var should = require('should');
-var connectGettext = require('../');
-
 describe('connect-gettext node module', function () {
-  it('must have at least one test', function () {
-    connectGettext();
-    should.fail('Need to write tests.');
+  before(function() {
+    this.cwd = process.cwd();
+    process.chdir(__dirname);
   });
+
+  after(function() {
+    process.chdir(this.cwd);
+  });
+
+  it('must inject default translation for default language', function (done) {
+    var locale = {
+      supportedLanguages: ['pl'],
+      defaultLanguage: 'en'
+    };
+    var connectGettext = require('..')(locale);
+    var req = {
+      lang: 'en'
+    };
+    var res = {
+      locals: {}
+    };
+
+    connectGettext(req, res, function(err) {
+      res.locals.should.have.property('gettext')
+        .with.type('function').property('name', 'identity');
+      var gettext = res.locals.gettext;
+      gettext('Hello').should.be.exactly('Hello');
+      gettext('Some other string').should.be.exactly('Some other string');
+      done(err);
+    });
+  });
+
+  it('must inject default translation for missing language', function (done) {
+    var locale = {
+      supportedLanguages: ['pl'],
+      defaultLanguage: 'en'
+    };
+    var connectGettext = require('..')(locale);
+    var req = {
+      lang: 'gr' // no translation files for Greek
+    };
+    var res = {
+      locals: {}
+    };
+
+    connectGettext(req, res, function(err) {
+      res.locals.should.have.property('gettext')
+        .with.type('function').property('name', 'identity');
+      var gettext = res.locals.gettext;
+      gettext('Hello').should.be.exactly('Hello');
+      gettext('Some other string').should.be.exactly('Some other string');
+      done(err);
+    });
+  });
+
+  it('must inject translation for supported language', function (done) {
+    var locale = {
+      supportedLanguages: ['pl'],
+      defaultLanguage: 'en'
+    };
+    var connectGettext = require('..')(locale);
+    var req = {
+      lang: 'pl'
+    };
+    var res = {
+      locals: {}
+    };
+
+    connectGettext(req, res, function(err) {
+      res.locals.should.have.property('gettext')
+        .with.type('function');
+      var gettext = res.locals.gettext;
+      gettext('Hello').should.be.exactly('Cześć');
+      gettext('Good-bye').should.be.exactly('Do Widzenia');
+      gettext('Some other string').should.be.exactly('Some other string');
+      done(err);
+    });
+  });
+
+  it('must honor gettextAlias option', function (done) {
+    var locale = {
+      supportedLanguages: ['pl'],
+      defaultLanguage: 'en',
+      gettextAlias: '_'
+    };
+    var connectGettext = require('..')(locale);
+    var req = {
+      lang: 'pl'
+    };
+    var res = {
+      locals: {}
+    };
+
+    connectGettext(req, res, function(err) {
+      res.locals.should.have.property('_')
+        .with.type('function');
+      var gettext = res.locals._;
+      gettext('Hello').should.be.exactly('Cześć');
+      gettext('Good-bye').should.be.exactly('Do Widzenia');
+      gettext('Some other string').should.be.exactly('Some other string');
+      done(err);
+    });
+  });
+
+
 });
