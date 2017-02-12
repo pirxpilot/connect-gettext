@@ -13,3 +13,6 @@ msgstr ""
 msgid "Good-bye"
 msgstr ""
 
+msgctxt "formal"
+msgid "Hello"
+msgstr ""

@@ -17,3 +17,8 @@ msgstr "Cześć"
 
 msgid "Good-bye"
 msgstr "Do Widzenia"
+
+msgctxt "formal"
+msgid "Hello"
+msgstr "Witamy"
+
