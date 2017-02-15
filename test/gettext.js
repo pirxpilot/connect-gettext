@@ -47,8 +47,8 @@ describe('connect-gettext node module', function () {
     connectGettext(req, res, function(err) {
       res.locals.should.have.property('gettext')
         .with.type('function').property('name', 'identity');
-      var gettext = res.locals.gettext;
-      gettext.p('formal', 'Hello').should.be.exactly('Hello');
+      var pgettext = res.locals.pgettext;
+      pgettext('formal', 'Hello').should.be.exactly('Hello');
       done(err);
     });
   });
@@ -140,11 +140,11 @@ describe('connect-gettext node module', function () {
 
     connectGettext(req, res, function(err) {
       var gettext = res.locals.gettext;
+      var pgettext = res.locals.pgettext;
       gettext('Hello').should.be.exactly('Cześć');
-      gettext.p('formal', 'Hello').should.be.exactly('Witamy');
+      pgettext('formal', 'Hello').should.be.exactly('Witamy');
       done(err);
     });
   });
-
 
 });
