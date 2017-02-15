@@ -31,6 +31,28 @@ describe('connect-gettext node module', function () {
     });
   });
 
+  it('must support context for the default language', function (done) {
+    var locale = {
+      supportedLanguages: ['pl'],
+      defaultLanguage: 'en'
+    };
+    var connectGettext = require('..')(locale);
+    var req = {
+      lang: 'en'
+    };
+    var res = {
+      locals: {}
+    };
+
+    connectGettext(req, res, function(err) {
+      res.locals.should.have.property('gettext')
+        .with.type('function').property('name', 'identity');
+      var pgettext = res.locals.pgettext;
+      pgettext('formal', 'Hello').should.be.exactly('Hello');
+      done(err);
+    });
+  });
+
   it('must inject default translation for missing language', function (done) {
     var locale = {
       supportedLanguages: ['pl'],
@@ -103,5 +125,26 @@ describe('connect-gettext node module', function () {
     });
   });
 
+  it('must honor message context', function (done) {
+    var locale = {
+      supportedLanguages: ['pl'],
+      defaultLanguage: 'en',
+    };
+    var connectGettext = require('..')(locale);
+    var req = {
+      lang: 'pl'
+    };
+    var res = {
+      locals: {}
+    };
+
+    connectGettext(req, res, function(err) {
+      var gettext = res.locals.gettext;
+      var pgettext = res.locals.pgettext;
+      gettext('Hello').should.be.exactly('Cześć');
+      pgettext('formal', 'Hello').should.be.exactly('Witamy');
+      done(err);
+    });
+  });
 
 });
