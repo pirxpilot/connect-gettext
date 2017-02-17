@@ -45,7 +45,7 @@ and `res.render` will be able to use it when rendering pages.
 
 ## License
 
-MIT © [Damian Krzeminski](https://code42day.com)
+MIT © [Damian Krzeminski](https://pirxpilot.me)
 
 [detect-language]: https://npmjs.org/package/detect-language
 [overwrite-language]: https://npmjs.org/package/overwrite-language
@@ -53,8 +53,8 @@ MIT © [Damian Krzeminski](https://code42day.com)
 [npm-image]: https://img.shields.io/npm/v/connect-gettext.svg
 [npm-url]: https://npmjs.org/package/connect-gettext
 
-[travis-url]: https://travis-ci.org/code42day/connect-gettext
-[travis-image]: https://img.shields.io/travis/code42day/connect-gettext.svg
+[travis-url]: https://travis-ci.org/pirxpilot/connect-gettext
+[travis-image]: https://img.shields.io/travis/pirxpilot/connect-gettext.svg
 
-[gemnasium-image]: https://img.shields.io/gemnasium/code42day/connect-gettext.svg
-[gemnasium-url]: https://gemnasium.com/code42day/connect-gettext
+[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/connect-gettext.svg
+[gemnasium-url]: https://gemnasium.com/pirxpilot/connect-gettext
