@@ -1,4 +1,13 @@
 
+2.0.0 / 2020-03-29
+==================
+
+ * fix dependency links in Readme
+ * rewrite in ES6
+ * update dependencies
+ * update node version for Travis CJ
+ * replace .npmignore with package.files
+
 1.1.1 / 2017-02-16
 ==================
 
