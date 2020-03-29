@@ -13,7 +13,7 @@
     "connect-gettext",
     "i18n",
     "l10n",
-    "translatio",
+    "translation",
     "gettext",
     "connect",
     "po"
@@ -29,5 +29,9 @@
   },
   "scripts": {
     "test": "make check"
-  }
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ]
 }
