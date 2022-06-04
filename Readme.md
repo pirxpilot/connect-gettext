@@ -1,7 +1,6 @@
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][build-image]][build-url]
 [![Dependency Status][deps-image]][deps-url]
-[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 # connect-gettext
 
@@ -51,14 +50,12 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [detect-language]: https://npmjs.org/package/detect-language
 [overwrite-language]: https://npmjs.org/package/overwrite-language
 
-[npm-image]: https://img.shields.io/npm/v/connect-gettext.svg
+[npm-image]: https://img.shields.io/npm/v/connect-gettext
 [npm-url]: https://npmjs.org/package/connect-gettext
 
-[travis-url]: https://travis-ci.org/pirxpilot/connect-gettext
-[travis-image]: https://img.shields.io/travis/pirxpilot/connect-gettext.svg
+[build-url]: https://github.com/pirxpilot/connect-gettext/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/workflow/status/pirxpilot/connect-gettext/check
 
-[deps-image]: https://img.shields.io/david/pirxpilot/connect-gettext.svg
-[deps-url]: https://david-dm.org/pirxpilot/connect-gettext
+[deps-image]: https://img.shields.io/librariesio/release/npm/connect-gettext
+[deps-url]: https://libraries.io/npm/connect-gettext
 
-[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/connect-gettext.svg
-[deps-dev-url]: https://david-dm.org/pirxpilot/connect-gettext?type=dev
