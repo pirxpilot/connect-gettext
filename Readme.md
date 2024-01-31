@@ -54,7 +54,7 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [npm-url]: https://npmjs.org/package/connect-gettext
 
 [build-url]: https://github.com/pirxpilot/connect-gettext/actions/workflows/check.yaml
-[build-image]: https://img.shields.io/github/workflow/status/pirxpilot/connect-gettext/check
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/connect-gettext/check.yaml?branch=main
 
 [deps-image]: https://img.shields.io/librariesio/release/npm/connect-gettext
 [deps-url]: https://libraries.io/npm/connect-gettext

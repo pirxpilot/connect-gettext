@@ -20,11 +20,10 @@
   ],
   "dependencies": {
     "debug": "~4",
-    "gettext-parser": "~4"
+    "gettext-parser": "~7"
   },
   "devDependencies": {
-    "jshint": "~2",
-    "mocha": "~7",
+    "@pirxpilot/jshint": "~3",
     "should": "~13"
   },
   "scripts": {
