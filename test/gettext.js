@@ -1,14 +1,12 @@
+require('should');
+const { before, describe, it } = require('node:test');
+
 describe('connect-gettext node module', function () {
-  before(function() {
-    this.cwd = process.cwd();
+  before(function () {
     process.chdir(__dirname);
   });
 
-  after(function() {
-    process.chdir(this.cwd);
-  });
-
-  it('must inject default translation for default language', function (done) {
+  it('must inject default translation for default language', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
@@ -21,7 +19,7 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function(err) {
+    connectGettext(req, res, function (err) {
       res.locals.should.have.property('gettext')
         .with.type('function').property('name', 'identity');
       const gettext = res.locals.gettext;
@@ -31,7 +29,7 @@ describe('connect-gettext node module', function () {
     });
   });
 
-  it('must support context for the default language', function (done) {
+  it('must support context for the default language', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
@@ -44,7 +42,7 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function(err) {
+    connectGettext(req, res, function (err) {
       res.locals.should.have.property('gettext')
         .with.type('function').property('name', 'identity');
       const pgettext = res.locals.pgettext;
@@ -53,7 +51,7 @@ describe('connect-gettext node module', function () {
     });
   });
 
-  it('must inject default translation for missing language', function (done) {
+  it('must inject default translation for missing language', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
@@ -66,7 +64,7 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function(err) {
+    connectGettext(req, res, function (err) {
       res.locals.should.have.property('gettext')
         .with.type('function').property('name', 'identity');
       const gettext = res.locals.gettext;
@@ -76,7 +74,7 @@ describe('connect-gettext node module', function () {
     });
   });
 
-  it('must inject translation for supported language', function (done) {
+  it('must inject translation for supported language', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
@@ -89,7 +87,7 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function(err) {
+    connectGettext(req, res, function (err) {
       res.locals.should.have.property('gettext')
         .with.type('function');
       const gettext = res.locals.gettext;
@@ -100,7 +98,7 @@ describe('connect-gettext node module', function () {
     });
   });
 
-  it('must honor gettextAlias option', function (done) {
+  it('must honor gettextAlias option', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en',
@@ -114,7 +112,7 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function(err) {
+    connectGettext(req, res, function (err) {
       res.locals.should.have.property('_')
         .with.type('function');
       const gettext = res.locals._;
@@ -125,7 +123,7 @@ describe('connect-gettext node module', function () {
     });
   });
 
-  it('must honor message context', function (done) {
+  it('must honor message context', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en',
@@ -138,7 +136,7 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function(err) {
+    connectGettext(req, res, function (err) {
       const gettext = res.locals.gettext;
       const pgettext = res.locals.pgettext;
       gettext('Hello').should.be.exactly('Cześć');
@@ -146,5 +144,4 @@ describe('connect-gettext node module', function () {
       done(err);
     });
   });
-
 });
