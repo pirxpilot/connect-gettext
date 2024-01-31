@@ -1,4 +1,11 @@
 
+2.1.0 / 2024-01-31
+==================
+
+ * update gettext-parser to ~7
+ * replace mocha with node:test
+ * replace jshint with @pirxpilot/jshint
+
 2.0.0 / 2020-03-29
 ==================
 
