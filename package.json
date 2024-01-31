@@ -23,7 +23,7 @@
     "gettext-parser": "~4"
   },
   "devDependencies": {
-    "jshint": "~2",
+    "@pirxpilot/jshint": "~3",
     "mocha": "~7",
     "should": "~13"
   },
