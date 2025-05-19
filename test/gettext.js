@@ -1,6 +1,8 @@
 require('should');
 const { before, describe, it } = require('node:test');
 
+const gettext = require('../lib/gettext');
+
 describe('connect-gettext node module', function () {
   before(function () {
     process.chdir(__dirname);
@@ -11,7 +13,7 @@ describe('connect-gettext node module', function () {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'en'
     };
@@ -36,7 +38,7 @@ describe('connect-gettext node module', function () {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'en'
     };
@@ -60,7 +62,7 @@ describe('connect-gettext node module', function () {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'gr' // no translation files for Greek
     };
@@ -85,7 +87,7 @@ describe('connect-gettext node module', function () {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'pl'
     };
@@ -109,7 +111,7 @@ describe('connect-gettext node module', function () {
       defaultLanguage: 'en',
       gettextAlias: '_'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'pl'
     };
@@ -132,7 +134,7 @@ describe('connect-gettext node module', function () {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'pl'
     };
