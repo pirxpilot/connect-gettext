@@ -1,4 +1,11 @@
 
+2.1.1 / 2025-05-19
+==================
+
+ * use `node:assert` instead of `should`
+ * remove functionally empty `index.js`
+ * use `biome` as a linter and formatter
+
 2.1.0 / 2024-01-31
 ==================
 
