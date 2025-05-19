@@ -7,6 +7,6 @@ format::
 	./node_modules/.bin/biome check --fix
 
 test:
-	node --require should --test
+	node --test
 
 .PHONY: check format lint test

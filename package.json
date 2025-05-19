@@ -27,8 +27,7 @@
     "gettext-parser": "~7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "should": "~13"
+    "@biomejs/biome": "^1.9.4"
   },
   "scripts": {
     "test": "make check"
