@@ -23,7 +23,7 @@
     "gettext-parser": "~7"
   },
   "devDependencies": {
-    "@pirxpilot/jshint": "~3",
+    "@biomejs/biome": "^1.9.4",
     "should": "~13"
   },
   "scripts": {

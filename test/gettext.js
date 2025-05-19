@@ -20,8 +20,10 @@ describe('connect-gettext node module', function () {
     };
 
     connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function').property('name', 'identity');
+      res.locals.should.have
+        .property('gettext')
+        .with.type('function')
+        .property('name', 'identity');
       const gettext = res.locals.gettext;
       gettext('Hello').should.be.exactly('Hello');
       gettext('Some other string').should.be.exactly('Some other string');
@@ -43,8 +45,10 @@ describe('connect-gettext node module', function () {
     };
 
     connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function').property('name', 'identity');
+      res.locals.should.have
+        .property('gettext')
+        .with.type('function')
+        .property('name', 'identity');
       const pgettext = res.locals.pgettext;
       pgettext('formal', 'Hello').should.be.exactly('Hello');
       done(err);
@@ -65,8 +69,10 @@ describe('connect-gettext node module', function () {
     };
 
     connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function').property('name', 'identity');
+      res.locals.should.have
+        .property('gettext')
+        .with.type('function')
+        .property('name', 'identity');
       const gettext = res.locals.gettext;
       gettext('Hello').should.be.exactly('Hello');
       gettext('Some other string').should.be.exactly('Some other string');
@@ -88,8 +94,7 @@ describe('connect-gettext node module', function () {
     };
 
     connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function');
+      res.locals.should.have.property('gettext').with.type('function');
       const gettext = res.locals.gettext;
       gettext('Hello').should.be.exactly('Cześć');
       gettext('Good-bye').should.be.exactly('Do Widzenia');
@@ -113,8 +118,7 @@ describe('connect-gettext node module', function () {
     };
 
     connectGettext(req, res, function (err) {
-      res.locals.should.have.property('_')
-        .with.type('function');
+      res.locals.should.have.property('_').with.type('function');
       const gettext = res.locals._;
       gettext('Hello').should.be.exactly('Cześć');
       gettext('Good-bye').should.be.exactly('Do Widzenia');
@@ -126,7 +130,7 @@ describe('connect-gettext node module', function () {
   it('must honor message context', function (_, done) {
     const locale = {
       supportedLanguages: ['pl'],
-      defaultLanguage: 'en',
+      defaultLanguage: 'en'
     };
     const connectGettext = require('..')(locale);
     const req = {
