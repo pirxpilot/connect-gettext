@@ -1,17 +1,16 @@
-require('should');
 const { before, describe, it } = require('node:test');
 
-describe('connect-gettext node module', function () {
-  before(function () {
-    process.chdir(__dirname);
-  });
+const gettext = require('../lib/gettext');
 
-  it('must inject default translation for default language', function (_, done) {
+describe('connect-gettext node module', () => {
+  before(() => process.chdir(__dirname));
+
+  it('must inject default translation for default language', (t, done) => {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'en'
     };
@@ -19,22 +18,22 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function').property('name', 'identity');
-      const gettext = res.locals.gettext;
-      gettext('Hello').should.be.exactly('Hello');
-      gettext('Some other string').should.be.exactly('Some other string');
+    connectGettext(req, res, err => {
+      t.assert.equal(typeof res.locals.gettext, 'function');
+      t.assert.equal(res.locals.gettext.name, 'identity');
+      const { gettext } = res.locals;
+      t.assert.equal(gettext('Hello'), 'Hello');
+      t.assert.equal(gettext('Some other string'), 'Some other string');
       done(err);
     });
   });
 
-  it('must support context for the default language', function (_, done) {
+  it('must support context for the default language', (t, done) => {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'en'
     };
@@ -42,21 +41,21 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function').property('name', 'identity');
-      const pgettext = res.locals.pgettext;
-      pgettext('formal', 'Hello').should.be.exactly('Hello');
+    connectGettext(req, res, err => {
+      t.assert.equal(typeof res.locals.pgettext, 'function');
+      t.assert.equal(res.locals.pgettext.name, 'pidentity');
+      const { pgettext } = res.locals;
+      t.assert.equal(pgettext('formal', 'Hello'), 'Hello');
       done(err);
     });
   });
 
-  it('must inject default translation for missing language', function (_, done) {
+  it('must inject default translation for missing language', (t, done) => {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'gr' // no translation files for Greek
     };
@@ -64,22 +63,22 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function').property('name', 'identity');
-      const gettext = res.locals.gettext;
-      gettext('Hello').should.be.exactly('Hello');
-      gettext('Some other string').should.be.exactly('Some other string');
+    connectGettext(req, res, err => {
+      t.assert.equal(typeof res.locals.gettext, 'function');
+      t.assert.equal(res.locals.gettext.name, 'identity');
+      const { gettext } = res.locals;
+      t.assert.equal(gettext('Hello'), 'Hello');
+      t.assert.equal(gettext('Some other string'), 'Some other string');
       done(err);
     });
   });
 
-  it('must inject translation for supported language', function (_, done) {
+  it('must inject translation for supported language', (t, done) => {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'pl'
     };
@@ -87,24 +86,23 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function (err) {
-      res.locals.should.have.property('gettext')
-        .with.type('function');
-      const gettext = res.locals.gettext;
-      gettext('Hello').should.be.exactly('Cześć');
-      gettext('Good-bye').should.be.exactly('Do Widzenia');
-      gettext('Some other string').should.be.exactly('Some other string');
+    connectGettext(req, res, err => {
+      t.assert.equal(typeof res.locals.gettext, 'function');
+      const { gettext } = res.locals;
+      t.assert.equal(gettext('Hello'), 'Cześć');
+      t.assert.equal(gettext('Good-bye'), 'Do Widzenia');
+      t.assert.equal(gettext('Some other string'), 'Some other string');
       done(err);
     });
   });
 
-  it('must honor gettextAlias option', function (_, done) {
+  it('must honor gettextAlias option', (t, done) => {
     const locale = {
       supportedLanguages: ['pl'],
       defaultLanguage: 'en',
       gettextAlias: '_'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'pl'
     };
@@ -112,23 +110,22 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function (err) {
-      res.locals.should.have.property('_')
-        .with.type('function');
+    connectGettext(req, res, err => {
+      t.assert.equal(typeof res.locals._, 'function');
       const gettext = res.locals._;
-      gettext('Hello').should.be.exactly('Cześć');
-      gettext('Good-bye').should.be.exactly('Do Widzenia');
-      gettext('Some other string').should.be.exactly('Some other string');
+      t.assert.equal(gettext('Hello'), 'Cześć');
+      t.assert.equal(gettext('Good-bye'), 'Do Widzenia');
+      t.assert.equal(gettext('Some other string'), 'Some other string');
       done(err);
     });
   });
 
-  it('must honor message context', function (_, done) {
+  it('must honor message context', (t, done) => {
     const locale = {
       supportedLanguages: ['pl'],
-      defaultLanguage: 'en',
+      defaultLanguage: 'en'
     };
-    const connectGettext = require('..')(locale);
+    const connectGettext = gettext(locale);
     const req = {
       lang: 'pl'
     };
@@ -136,11 +133,10 @@ describe('connect-gettext node module', function () {
       locals: {}
     };
 
-    connectGettext(req, res, function (err) {
-      const gettext = res.locals.gettext;
-      const pgettext = res.locals.pgettext;
-      gettext('Hello').should.be.exactly('Cześć');
-      pgettext('formal', 'Hello').should.be.exactly('Witamy');
+    connectGettext(req, res, err => {
+      const { gettext, pgettext } = res.locals;
+      t.assert.equal(gettext('Hello'), 'Cześć');
+      t.assert.equal(pgettext('formal', 'Hello'), 'Witamy');
       done(err);
     });
   });

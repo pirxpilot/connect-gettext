@@ -7,7 +7,11 @@
     "email": "pirxpilot@furkot.com",
     "url": "https://pirxpilot.me"
   },
-  "repository": "pirxpilot/connect-gettext",
+  "exports": "./lib/gettext.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pirxpilot/connect-gettext.git"
+  },
   "license": "MIT",
   "keywords": [
     "connect-gettext",
@@ -23,14 +27,12 @@
     "gettext-parser": "~7"
   },
   "devDependencies": {
-    "@pirxpilot/jshint": "~3",
-    "should": "~13"
+    "@biomejs/biome": "^1.9.4"
   },
   "scripts": {
     "test": "make check"
   },
   "files": [
-    "index.js",
     "lib"
   ]
 }
