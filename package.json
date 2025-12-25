@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "debug": "~4",
-    "gettext-parser": "~7"
+    "gettext-parser": "~8"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.10"
