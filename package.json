@@ -8,6 +8,7 @@
     "url": "https://pirxpilot.me"
   },
   "exports": "./lib/gettext.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pirxpilot/connect-gettext.git"
