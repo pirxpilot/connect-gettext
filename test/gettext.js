@@ -1,9 +1,8 @@
-const { before, describe, it } = require('node:test');
-
-const gettext = require('../lib/gettext');
+import { before, describe, it } from 'node:test';
+import gettext from '../lib/gettext.js';
 
 describe('connect-gettext node module', () => {
-  before(() => process.chdir(__dirname));
+  before(() => process.chdir(import.meta.dirname));
 
   it('must inject default translation for default language', (t, done) => {
     const locale = {

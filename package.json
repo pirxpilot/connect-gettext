@@ -8,6 +8,7 @@
     "url": "https://pirxpilot.me"
   },
   "exports": "./lib/gettext.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pirxpilot/connect-gettext.git"
@@ -24,10 +25,10 @@
   ],
   "dependencies": {
     "debug": "~4",
-    "gettext-parser": "~7"
+    "gettext-parser": "~8"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4"
+    "@biomejs/biome": "2.3.10"
   },
   "scripts": {
     "test": "make check"
