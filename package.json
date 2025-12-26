@@ -1,6 +1,6 @@
 {
   "name": "connect-gettext",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Lightweight implementation of gettext as connect middleware.",
   "author": {
     "name": "Damian Krzeminski",
